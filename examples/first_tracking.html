@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>tracking.js - first tracking</title>
+  <script src="../build/tracking-min.js"></script>
+  <script src="../build/data/face-min.js"></script>
+  <script src="../build/data/eye-min.js"></script>
+  <script src="../build/data/mouth-min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+
+<body>
+  <img id="motionjpeg" src="http://192.168.1.12:8081/" />
+    <canvas id="canvas" width="640" height="480"></canvas>
+    
+    <script src="../build/motionjpeg.js"></script>
+    <script>
+    
+        window.onload = function() {
+    var imgsrc = document.getElementById("#motionjpeg");
+            var canvas = document.getElementById('canvas');
+      var context = canvas.getContext('2d');
+            
+            
+            var tracker = new tracking.ObjectTracker('face');
+      tracker.setInitialScale(4);
+      tracker.setStepSize(2);
+      tracker.setEdgesDensity(0.1);
+            
+            tracking.track('#motionjpeg', tracker);
+            
+            console.log("worked");
+        }
+        $(document).ready(function() {
+      motionjpeg("#motionjpeg"); // Use the function on the image
+       
+
+    });
+  </script>
+</body>
+
+</html>
